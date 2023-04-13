@@ -1,0 +1,27 @@
+{{- if .Values.backup.enabled -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: borealis-backup
+  labels:
+    application: borealis-backup
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      application: borealis-backup
+  template:
+    metadata:
+      labels:
+        application: borealis-backup
+    spec:
+      containers:
+        - name: borealis-backup-leader
+          imagePullPolicy: IfNotPresent
+          image: chrislusf/seaweedfs:latest
+          args:
+            - server -s3
+          ports:
+            - containerPort: {{.Values.backup.port}}
+              hostPort: {{.Values.backup.port}}
+{{- end }}

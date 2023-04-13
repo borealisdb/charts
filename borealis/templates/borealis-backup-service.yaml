@@ -1,0 +1,16 @@
+{{- if .Values.backup.enabled -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: borealis-backup-service
+  labels:
+    application: borealis-backup-service
+spec:
+  type: ClusterIP
+  ports:
+    - name: backup
+      port: {{ .Values.backup.port }}
+      targetPort: {{ .Values.backup.port }}
+  selector:
+    application: borealis-backup
+{{- end }}

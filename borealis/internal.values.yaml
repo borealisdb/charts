@@ -1,0 +1,2 @@
+internal:
+  grpcProxyPort: 8086

@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: borealis-operator
+  namespace: {{.Release.Namespace}}
+  labels:
+    application: borealis-operator
+spec:
+  replicas: {{.Values.operator.replicas}}
+  selector:
+    matchLabels:
+      application: borealis-operator
+  template:
+    metadata:
+      annotations:
+        checksum/config: {{ include (print $.Template.BasePath "/borealis-operator-configmap.yaml") . | sha256sum }}
+      labels:
+        application: borealis-operator
+    spec:
+      serviceAccountName: borealis-infrastructures
+      volumes:
+        - name: "plugins" # This is for the GRPC socket file of the plugins
+          emptyDir: {}
+      containers:
+        - name: borealis-postgres-operator
+          image: {{.Values.operator.imageName}}:{{.Values.operator.imageVersion}}
+          imagePullPolicy: IfNotPresent
+          volumeMounts: # GRPC uses unix sockets and save them in /tmp/
+            - mountPath: "/tmp"
+              name: "plugins"
+          resources:
+            requests:
+              cpu: 100m
+              memory: 250Mi
+            limits:
+              cpu: 500m
+              memory: 500Mi
+          securityContext:
+            runAsUser: 1000
+            runAsNonRoot: true
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+          env:
+            - name: CONFIG_MAP_NAME
+              value: {{.Values.operator.configMapName}}

@@ -1,0 +1,11 @@
+{
+  "plugins": [
+    [
+      "semantic-release-helm",
+      {
+        "chartPath": "./borealis",
+        "registry": "localhost:5000/repo/chart"
+      }
+    ]
+  ]
+}

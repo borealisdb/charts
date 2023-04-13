@@ -1,0 +1,13 @@
+{{- if .Values.storage.enabled -}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{.Values.storage.name}}
+spec:
+  storageClassName: {{.Values.storage.storageClassName}}
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{.Values.storage.size}}
+{{- end }}
