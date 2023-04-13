@@ -16,3 +16,4 @@
 .idea
 node_modules
 tmp
+secrets.env
