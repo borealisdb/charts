@@ -15,7 +15,7 @@ helm.package:
 build: prepare helm.version helm.package
 
 publish: build
-	git add -A && git commit -m "chore(): built helm chart artifacts"
+	git add -A && git commit -m "chore(): built helm chart artifacts" && git push origin master
 
 release: publish
 	git tag $(TAG)
