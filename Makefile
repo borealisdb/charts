@@ -20,4 +20,4 @@ publish: build
 release: publish
 	git tag $(TAG)
 	git push --tags
-	goreleaser release --clean
+	export $(cat secrets.env | xargs) && goreleaser release --clean
