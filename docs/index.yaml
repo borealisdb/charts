@@ -3,9 +3,9 @@ entries:
   borealis:
   - apiVersion: v2
     appVersion: 0.0.1
-    created: "2023-04-13T12:26:54.549841297+03:00"
+    created: "2023-04-13T13:03:50.830049474+03:00"
     description: Borealis infrastructure chart
-    digest: 20c14c80e610238dd560feb98814fb86e35c0f98ad0d7ad22ea3cc29eed7ceda
+    digest: d9c2ff6d297e43c69e59830682d87c5aa7adcaa14f02b4f0ebd7138d08ecbb43
     keywords:
     - borealisdb
     - kubernetes
@@ -18,4 +18,4 @@ entries:
     urls:
     - https://borealisdb.github.io/charts/borealis-0.0.1.tgz
     version: 0.0.1
-generated: "2023-04-13T12:26:54.544295437+03:00"
+generated: "2023-04-13T13:03:50.825001376+03:00"
