@@ -12,6 +12,13 @@ spec:
   serviceName: {{ .Values.serviceName }}
   template:
     metadata:
+      annotations:
+      {{- if .Values.enableSecretChecksum }}
+        checksum/config: {{ (lookup "v1" "Secret" .Release.Namespace .Values.secretName).data | toJson | sha256sum }}
+      {{- end }}
+      {{- if .Values.podsAnnotations }}
+{{ toYaml .Values.podsAnnotations | indent 8 }}
+       {{- end }}
       labels:
         application: borealis-infrastructures
     spec:
@@ -82,6 +89,8 @@ spec:
                   name: {{.Values.secretName}}
             - name: DATA_RETENTION
               value: {{.Values.dataRetentionDays | quote}}
+            - name: BACKUP_ENDPOINT
+              value: {{ include "backup.endpoint" . }}
 
         - name: borealis-monitoring-clickhouse
           imagePullPolicy: IfNotPresent

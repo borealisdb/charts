@@ -16,3 +16,11 @@ Usage:
     {{- $v := $.Files.Get "internal.values.yaml" | fromYaml }}
     {{- print $v.internal.grpcProxyPort }}
 {{- end -}}
+
+{{- define  "backup.endpoint" -}}
+    {{- if .Values.backup.endpoint -}}
+        {{- print .Values.backup.endpoint -}}
+     {{- else}}
+        {{- printf "http://%s.%s.svc.cluster.local:%s" .Values.backup.serviceName .Release.Namespace (.Values.backup.port | toString) -}}
+     {{- end}}
+{{- end -}}

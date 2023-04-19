@@ -6,11 +6,13 @@ imageName: public.ecr.aws/borealisdb/console
 imageVersion: latest
 dataRetentionDays: 30 # This is the data retention of the time series storage (Clickhouse, Victoriametrics)
 secretName: borealis-secrets # Name of the secrets that belongs to the infrastructures
+enableSecretChecksum: false # If you change infrastructures secrets you can enable this to trigger a new deployment
 authenticationStrategy: oauth2 # For the time being oauth2 is the only supported
 clusterTokenLifespanMinutes: 30 # Postgres token for accessing the database via PAM role
 logLevel: info
 serviceName: borealis-service
 servicePort: 8080
+podsAnnotations: {}
 storage: # Storage you want to provision for the borealis infrastructures
   enabled: true # If disabled, you can create your own custom PersistentVolumeClaim, but you MUST specify the name of your claim
   size: 10Gi
@@ -26,10 +28,12 @@ prometheus:
   imageName: victoriametrics/victoria-metrics
   imageVersion: latest
 backup:
-  enabled: true
+  endpoint: "" # if you are using an external backup service, ex: https://domain.backapp.io/endpoint
+  enabled: true # this disables the built-in backup system
+  serviceName: borealis-backup-service
+  port: 8333
   imageName: chrislusf/seaweedfs
   imageVersion: latest
-  port: 8333
 
 operator:
   imageName: public.ecr.aws/borealisdb/operator
