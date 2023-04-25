@@ -36,8 +36,6 @@ spec:
               cpu: 500m
               memory: 500Mi
           securityContext:
-            runAsUser: 1000
-            runAsNonRoot: true
             readOnlyRootFilesystem: true
             allowPrivilegeEscalation: false
           env:

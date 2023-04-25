@@ -1,0 +1,13 @@
+{{- if .Values.backup.storageEnabled -}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{.Values.backup.storageName}}
+spec:
+  storageClassName: {{.Values.backup.storageClassName}}
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{.Values.backup.storageSize}}
+{{- end }}

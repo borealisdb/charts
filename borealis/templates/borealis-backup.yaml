@@ -15,13 +15,21 @@ spec:
       labels:
         application: borealis-backup
     spec:
+      volumes:
+        - name: backup-volume
+          persistentVolumeClaim:
+            claimName: {{.Values.backup.storageName}}
       containers:
         - name: borealis-backup-leader
           imagePullPolicy: IfNotPresent
           image: chrislusf/seaweedfs:latest
           args:
-            - server -s3
+            - server -filer -dir=/backups -s3 -volume.max={{.Values.backup.storageVolumes}}
           ports:
             - containerPort: {{.Values.backup.port}}
-              hostPort: {{.Values.backup.port}}
+          volumeMounts:
+            - mountPath: "/backups"
+              name: backup-volume
+            - mountPath: "/data"
+              name: backup-volume
 {{- end }}

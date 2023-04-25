@@ -34,6 +34,11 @@ backup:
   port: 8333
   imageName: chrislusf/seaweedfs
   imageVersion: latest
+  storageName: borealis-backup-storage
+  storageClassName: standard
+  storageSize: 100Gi
+  storageEnabled: true # If you want to configure your own pvc you can disable this one
+  storageVolumes: 1000 # This is details implementation of Seaweedfs
 
 operator:
   imageName: public.ecr.aws/borealisdb/operator

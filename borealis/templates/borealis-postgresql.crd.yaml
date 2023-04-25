@@ -3609,8 +3609,6 @@ spec:
                     type: string
                   backupRetentionPeriod:
                     type: string
-                  clusterSecretsName:
-                    type: string
                   deletePolicy:
                     type: string
                   enableEncryption:
@@ -3757,39 +3755,6 @@ spec:
               numberOfInstances:
                 format: int32
                 type: integer
-              patroni:
-                description: Patroni contains Patroni-specific configuration
-                properties:
-                  initdb:
-                    additionalProperties:
-                      type: string
-                    type: object
-                  loop_wait:
-                    format: int32
-                    type: integer
-                  maximum_lag_on_failover:
-                    type: number
-                  pg_hba:
-                    items:
-                      type: string
-                    type: array
-                  retry_timeout:
-                    format: int32
-                    type: integer
-                  slots:
-                    additionalProperties:
-                      additionalProperties:
-                        type: string
-                      type: object
-                    type: object
-                  synchronous_mode:
-                    type: boolean
-                  synchronous_mode_strict:
-                    type: boolean
-                  ttl:
-                    format: int32
-                    type: integer
-                type: object
               resources:
                 description: Resources describes requests and limits for the cluster
                   resources.
