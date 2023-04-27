@@ -2,8 +2,25 @@ apiVersion: v1
 entries:
   borealis:
   - apiVersion: v2
+    appVersion: 0.0.2
+    created: "2023-04-27T08:50:46.731275172+03:00"
+    description: Borealis infrastructure chart
+    digest: 1b6755cc937b78e5baea14a7c8d9f38a8816d867de7a2d5cf244c99e049b34a8
+    keywords:
+    - borealisdb
+    - kubernetes
+    - postgresql
+    maintainers:
+    - email: info@matteogioioso.com
+      name: Matteo Gioioso
+    name: borealis
+    type: application
+    urls:
+    - https://borealisdb.github.io/charts/borealis-0.0.2.tgz
+    version: 0.0.2
+  - apiVersion: v2
     appVersion: 0.0.1
-    created: "2023-04-13T13:05:21.74683414+03:00"
+    created: "2023-04-27T08:50:46.729098061+03:00"
     description: Borealis infrastructure chart
     digest: 98a05fa998b92f051e8e111c7253e814ef8b95df239e6e893e00b925c7caf43a
     keywords:
@@ -18,4 +35,4 @@ entries:
     urls:
     - https://borealisdb.github.io/charts/borealis-0.0.1.tgz
     version: 0.0.1
-generated: "2023-04-13T13:05:21.741235199+03:00"
+generated: "2023-04-27T08:50:46.72588743+03:00"
