@@ -17,7 +17,12 @@ build: prepare helm.version helm.package
 publish: build
 	git add -A && git commit -m "chore(): built helm chart artifacts" && git push origin master
 
-release: publish
+check.github.token:
+ifndef GITHUB_TOKEN
+	$(error GITHUB_TOKEN is undefined)
+endif
+
+release: check.github.token publish
 	git tag $(TAG)
 	git push --tags
 	export $(cat secrets.env | xargs) && goreleaser release --clean
